@@ -21,12 +21,15 @@ ChargePoint::ChargePoint(const std::string& config, const fs::path& share_path, 
 
 ChargePoint::~ChargePoint() = default;
 
-void ChargePoint::update_chargepoint_information(const std::string& chargepoint_vendor,
-                                                 const std::string& chargepoint_model,
-                                                 const std::string& chargepoint_serialnumber,
-                                                 const std::optional<std::string>& firmware_version) {
-    this->charge_point->update_chargepoint_information(chargepoint_vendor, chargepoint_model, chargepoint_serialnumber,
-                                                       firmware_version);
+void ChargePoint::update_chargepoint_information(const std::string& vendor, const std::string& model,
+                                                 const NullOrOptionalString& serialnumber,
+                                                 const NullOrOptionalString& chargebox_serialnumber,
+                                                 const NullOrOptionalString& firmware_version,
+                                                 const NullOrOptionalString& iccid, const NullOrOptionalString& imsi,
+                                                 const NullOrOptionalString& meter_serialnumber,
+                                                 const NullOrOptionalString& meter_type) {
+    this->charge_point->update_chargepoint_information(vendor, model, serialnumber, chargebox_serialnumber,
+                                                       firmware_version, iccid, imsi, meter_serialnumber, meter_type);
 }
 
 bool ChargePoint::init(const std::map<int, ChargePointStatus>& connector_status_map,
